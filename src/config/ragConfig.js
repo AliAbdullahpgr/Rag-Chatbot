@@ -7,12 +7,12 @@ export const config = {
 
     gemini: {
         apiKey: process.env.GEMINI_API_KEY,
-        chatModel: 'gemini-2.0-flash-exp'
+        chatModel: 'gemini-2.0-flash-exp',
     },
 
     huggingface: {
-        apiKey: process.env.HUGGINGFACE_API_KEY, 
-        embeddingModel: 'BAAI/bge-small-en-v1.5', 
+        apiKey: process.env.HUGGINGFACE_API_KEY,
+        embeddingModel: 'BAAI/bge-small-en-v1.5',
     },
 
     rag: {
