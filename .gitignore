@@ -54,7 +54,11 @@ rebuild-database.js
 **/check-database.js
 
 # Old/unused database implementations
-Db/vectorDb/
+Db/vectorDb/chunks.js
+Db/vectorDb/data.js
+Db/vectorDb/embeddings.js
+Db/vectorDb/supabase.js
+Db/vectorDb/*
 Db/vectorDbRes/embeddings.js
 Db/vectorDbRes/match.js
 Db/vectorDbRes/question.js
