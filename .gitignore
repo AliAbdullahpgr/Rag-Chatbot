@@ -22,3 +22,58 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ============================================
+# DEPLOYMENT: Development-only files
+# ============================================
+
+# Documentation and summaries (not needed in production)
+summaries/
+**/SUMMARY.md
+**/README*.md
+CODE-FLOW-DIAGRAM.md
+FINAL-CHECKLIST.md
+IMPLEMENTATION-SUMMARY.md
+QUICK-REFERENCE.md
+RAG-SETUP-GUIDE.md
+**/ANALYSIS.md
+**/FIXES.md
+
+# Test files (all test scripts)
+tests/
+test-*.js
+**/test-*.js
+verify-*.js
+list-*.js
+
+# Database setup and migration scripts (not for production)
+check-database.js
+debug-*.js
+update-database-embeddings.js
+rebuild-database.js
+**/check-database.js
+
+# Old/unused database implementations
+Db/vectorDb/
+Db/vectorDbRes/embeddings.js
+Db/vectorDbRes/match.js
+Db/vectorDbRes/question.js
+Db/vectorDbRes/searchUtils.js
+Db/vectorDbRes/similaritySearch.js
+
+# Keep only these production files in Db/:
+# - Db/vectorDbRes/embeddingUtils.js (used by ragService)
+
+# Environment files with secrets (CRITICAL - never commit API keys)
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.swp
+*~
+.cache/

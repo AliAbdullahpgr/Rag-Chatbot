@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { ragWorkflow, initializeGemini } from '../services/ragService'
 import config from '../config/ragConfig'
+import Markdown from 'react-markdown'
 
 const MainCard = () => {
     const [input, setInput] = useState('')
     const [messages, setMessages] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     
-    // Initialize Gemini on component mount
     useEffect(() => {
         initializeGemini(config.gemini.apiKey)
     }, [])
@@ -23,7 +23,6 @@ const MainCard = () => {
         e.preventDefault()
         if (!input.trim()) return
         
-        // Add user message
         const userMessage = { type: 'user', content: input, id: Date.now() }
         setMessages(prev => [...prev, userMessage])
         
@@ -32,7 +31,6 @@ const MainCard = () => {
         setIsLoading(true)
         
         try {
-            // RAG Workflow: Generate embedding → Search DB → Get context → Generate response
             const result = await ragWorkflow(currentInput)
             
             const aiMessage = { 
@@ -111,42 +109,9 @@ const MainCard = () => {
                                                 : 'bg-[rgb(31,33,33)] border border-gray-700 text-white'
                                         }`}
                                     >
-                                        <p
-                                            className={`text-sm font-medium mb-1 ${
-                                                message.type === 'user'
-                                                    ? 'text-blue-100'
-                                                    : 'text-green-400'
-                                            }`}
-                                        >
-                                            {message.type === 'user' ? 'You' : 'AI Assistant'}
-                                        </p>
                                         <div className="prose prose-invert max-w-none">
-                                            <p className="whitespace-pre-wrap">{message.content}</p>
+                                            <p className="whitespace-pre-wrap"><Markdown>{message.content}</Markdown></p>
                                         </div>
-                                        
-                                        {/* Show sources for AI responses */}
-                                        {message.type === 'ai' && message.sources && message.sources.length > 0 && (
-                                            <div className="mt-4 pt-4 border-t border-gray-600">
-                                                <p className="text-xs text-gray-400 font-semibold mb-2">
-                                                    📚 Sources ({message.sources.length} relevant chunks):
-                                                </p>
-                                                <div className="space-y-2">
-                                                    {message.sources.slice(0, 3).map((source, idx) => (
-                                                        <div key={idx} className="text-xs bg-gray-800/50 p-2 rounded">
-                                                            <div className="flex justify-between items-center mb-1">
-                                                                <span className="text-blue-400">Chunk {idx + 1}</span>
-                                                                <span className="text-green-400">
-                                                                    {(source.similarity * 100).toFixed(1)}% match
-                                                                </span>
-                                                            </div>
-                                                            <p className="text-gray-400 line-clamp-2">
-                                                                {source.content.substring(0, 150)}...
-                                                            </p>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             ))}
@@ -154,9 +119,7 @@ const MainCard = () => {
                             {isLoading && (
                                 <div className="flex justify-start">
                                     <div className="max-w-2xl p-4 rounded-lg bg-[rgb(31,33,33)] border border-gray-700 text-white">
-                                        <p className="text-sm font-medium mb-1 text-green-400">
-                                            AI Assistant
-                                        </p>
+                
                                         <div className="flex items-center space-x-2">
                                             <div className="flex space-x-1">
                                                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
@@ -181,7 +144,7 @@ const MainCard = () => {
 
                     <div className=" bg-[rgb(25,26,26)] p-4">
                         <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
-                            <div className="border border-gray-700 rounded-lg bg-[rgb(31,33,33)] flex items-center p-2">
+                            <div className="border border-gray-700 rounded-4xl bg-[rgb(31,33,33)] flex items-center p-3">
                                 <textarea
                                     value={input}
                                     onChange={handleInputChange}
@@ -196,7 +159,7 @@ const MainCard = () => {
                                     }}
                                 />
                                 <button
-                                    className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 transition-colors duration-200 p-2 rounded-md ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 transition-colors duration-200 p-2 rounded-4xl ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                     type="submit"
                                     disabled={!input.trim() || isLoading}
                                 >

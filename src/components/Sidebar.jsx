@@ -8,7 +8,6 @@ const Sidebar = () => {
       <img className="w-10" src="./images/ai.png" alt="ai logo" />
       <button className="mb-2 text-sm rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 px-4 py-4 transition-colors duration-200 flex items-center gap-2 shadow-md hover:shadow-lg">
         <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-sm" /> 
-        {/* <span className="font-medium">Logout</span> */}
       </button>
     </div>
   )
