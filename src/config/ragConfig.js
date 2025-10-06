@@ -1,18 +1,19 @@
 
 export const config = {
     supabase: {
-        url: process.env.SUPABASE_URL,
-        anonKey: process.env.SUPABASE_ANON_KEY,
+        url: import.meta.env.VITE_SUPABASE_URL,
+        anonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
     },
 
     gemini: {
-        apiKey: process.env.GEMINI_API_KEY,
+        apiKey: import.meta.env.VITE_GEMINI_API_KEY,
         chatModel: 'gemini-2.0-flash-exp',
     },
 
     huggingface: {
-        apiKey: process.env.HUGGINGFACE_API_KEY,
+        apiKey: import.meta.env.VITE_HUGGINGFACE_API_KEY,
         embeddingModel: 'BAAI/bge-small-en-v1.5',
+        
     },
 
     rag: {

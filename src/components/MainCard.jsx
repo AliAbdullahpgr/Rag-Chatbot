@@ -109,8 +109,8 @@ const MainCard = () => {
                                                 : 'bg-[rgb(31,33,33)] border border-gray-700 text-white'
                                         }`}
                                     >
-                                        <div className="prose prose-invert max-w-none">
-                                            <p className="whitespace-pre-wrap"><Markdown>{message.content}</Markdown></p>
+                                        <div className="prose prose-invert max-w-none whitespace-pre-wrap">
+                                            <Markdown>{message.content}</Markdown>
                                         </div>
                                     </div>
                                 </div>
