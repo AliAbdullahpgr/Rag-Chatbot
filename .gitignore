@@ -30,7 +30,10 @@ dist-ssr
 # Documentation and summaries (not needed in production)
 summaries/
 **/SUMMARY.md
-**/README*.md
+# Keep root README.md but exclude nested ones
+src/**/README*.md
+Db/**/README*.md
+public/**/README*.md
 CODE-FLOW-DIAGRAM.md
 FINAL-CHECKLIST.md
 IMPLEMENTATION-SUMMARY.md
